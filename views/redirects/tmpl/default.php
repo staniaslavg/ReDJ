@@ -22,29 +22,28 @@ $document->addStyleDeclaration( '.tip-text {word-wrap: break-word !important;}' 
 
 $user = JFactory::getUser();
 $userId = $user->get('id');
-$state = $this->get('state');;
-$pagination = $this->get('pagination');
-$listOrder = $this->escape($state->get('list.ordering'));
-$listDirn = $this->escape($state->get('list.direction'));
+$listOrder = $this->escape($this->state->get('list.ordering'));
+$listDirn = $this->escape($this->state->get('list.direction'));
 $canOrder = $user->authorise('core.edit.state');
 $saveOrder = $listOrder=='a.ordering';
 ?>
-
-<!--<form action="<?php echo JRoute::_('index.php?option=com_redj&view=redirects'); ?>" method="post" name="adminForm" id="adminForm">
+<div style="display:none">
+<form action="<?php echo JRoute::_('index.php?option=com_redj&view=redirects'); ?>" method="post" name="adminForm"
+      id="adminForm" xmlns="http://www.w3.org/1999/html">
 <fieldset id="filter-bar">
     <div class="filter-search fltlft">
         <label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
-        <input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($state->get('filter.search')); ?>" title="<?php echo JText::_('COM_REDJ_FILTER'); ?>" />
+        <input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_REDJ_FILTER'); ?>" />
         <button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
         <button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
     </div>
     <div class="filter-select fltrt">
         <select name="filter_state" class="inputbox" onchange="this.form.submit()">
             <option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
-            <?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $state->get('filter.state'), true);?>
+            <?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.state'), true);?>
         </select>
     </div>
-</fieldset>-->
+</fieldset> </div>
 <div class="clr"> </div>
 
 <div id="editcell" style="overflow-x:scroll">
@@ -96,7 +95,7 @@ $saveOrder = $listOrder=='a.ordering';
         <tfoot>
         <tr>
             <td colspan="11">
-                <?php echo $pagination->getListFooter(); ?>
+                <?php echo $this->pagination->getListFooter(); ?>
                 <p class="footer-tip">
                     <?php if ($this->enabled) : ?>
                     <span class="enabled"><?php echo JText::sprintf('COM_REDJ_PLUGIN_ENABLED', JText::_('COM_REDJ_PLG_SYSTEM_REDJ')); ?></span>
@@ -109,8 +108,7 @@ $saveOrder = $listOrder=='a.ordering';
         </tfoot>
         <tbody>
         <?php
-        var_dump($this);
-        if( $this->items ) {
+        if( count( $this->items ) > 0 ) {
             foreach ($this->items as $i => $item) :
                 $ordering	= ($listOrder == 'a.ordering');
                 $canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out==$userId || $item->checked_out==0;
@@ -119,7 +117,7 @@ $saveOrder = $listOrder=='a.ordering';
                 ?>
             <tr class="row<?php echo $i % 2; ?>">
                 <td>
-                    <?php echo $pagination->getRowOffset( $i ); ?>
+                    <?php echo $this->pagination->getRowOffset( $i ); ?>
                 </td>
                 <td class="center">
                     <?php echo JHtml::_('grid.id', $i, $item->id); ?>
@@ -201,11 +199,11 @@ $saveOrder = $listOrder=='a.ordering';
                     <?php if ($canChange) : ?>
                     <?php if ($saveOrder) : ?>
                         <?php if ($listDirn == 'asc') : ?>
-                            <span><?php echo $pagination->orderUpIcon($i, true, 'redirects.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                            <span><?php echo $pagination->orderDownIcon($i, $this->pagination->total, true, 'redirects.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
+                            <span><?php echo $this->pagination->orderUpIcon($i, true, 'redirects.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
+                            <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, true, 'redirects.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
                             <?php elseif ($listDirn == 'desc') : ?>
-                            <span><?php echo $pagination->orderUpIcon($i, true, 'redirects.orderdown', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                            <span><?php echo $pagination->orderDownIcon($i, $this->pagination->total, true, 'redirects.orderup', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
+                            <span><?php echo $this->pagination->orderUpIcon($i, true, 'redirects.orderdown', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
+                            <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, true, 'redirects.orderup', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
                             <?php endif; ?>
                         <?php endif; ?>
                     <?php $disabled = $saveOrder ?  '' : 'disabled="disabled"'; ?>

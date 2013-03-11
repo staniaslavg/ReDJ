@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="component" method="upgrade">
+    <name>com_redj</name>
+    <author>selfget.com</author>
+    <creationDate>May 2012</creationDate>
+    <copyright>Copyright (C) 2009 - 2012 selfget.com</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <authorEmail>info@selfget.com</authorEmail>
+    <authorUrl>http://www.selfget.com</authorUrl>
+    <version>1.6.2</version>
+    <description>COM_REDJ_DESCRIPTION</description>
+
+    <!-- installation part -->
+    <install>
+        <sql>
+          <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+
+    <update>
+        <schemas>
+          <schemapath type="mysql">sql/updates/mysql</schemapath>
+        </schemas>
+    </update>
+
+    <scriptfile>script.php</scriptfile>
+
+    <!-- user part -->
+
+    <!-- administration part -->
+    <administration>
+
+    <menu view="redirects" img="components/com_redj/images/redj.png">COM_REDJ_MENU_REDJ</menu>
+    <submenu>
+        <menu view="redirects">COM_REDJ_MENU_REDIRECTS</menu>
+        <menu view="pages404">COM_REDJ_MENU_PAGES404</menu>
+        <menu view="errors">COM_REDJ_MENU_ERRORS</menu>
+        <menu view="referers">COM_REDJ_MENU_REFERERS</menu>
+        <menu view="about">COM_REDJ_MENU_ABOUT</menu>
+    </submenu>
+
+    <files folder="admin">
+        <filename>access.xml</filename>
+        <filename>config.xml</filename>
+        <filename>controller.php</filename>
+        <filename>index.html</filename>
+        <filename>redj.php</filename>
+        <folder>controllers</folder>
+        <folder>helpers</folder>
+        <folder>images</folder>
+        <folder>models</folder>
+        <folder>sql</folder>
+        <folder>tables</folder>
+        <folder>views</folder>
+    </files>
+
+    <plugins>
+      <plugin folder="plugins/system" plugin="redj" name="plg_system_redj" group="system" />
+    </plugins>
+
+    <languages folder="admin">
+        <language tag="en-GB">language/en-GB/en-GB.com_redj.ini</language>
+        <language tag="en-GB">language/en-GB/en-GB.com_redj.sys.ini</language>
+        <language tag="it-IT">language/it-IT/it-IT.com_redj.ini</language>
+        <language tag="it-IT">language/it-IT/it-IT.com_redj.sys.ini</language>
+    </languages>
+
+    </administration>
+
+</extension>

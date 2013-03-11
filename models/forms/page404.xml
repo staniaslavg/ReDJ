@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset name="details"
+    addfieldpath="/administrator/components/com_redj/models/fields"
+  >
+    <field name="id" type="text" default="0"
+      readonly="true" class="readonly"
+      label="JGLOBAL_FIELD_ID_LABEL" description ="JGLOBAL_FIELD_ID_DESC" />
+
+    <field name="title" type="text" class="inputbox"
+      size="40" label="COM_REDJ_FIELD_PAGE404_TITLE_LABEL"
+      description="COM_REDJ_FIELD_PAGE404_TITLE_DESC" required="true" />
+
+    <field name="language" type="text" class="inputbox"
+      size="40" label="COM_REDJ_FIELD_PAGE404_LANGUAGE_LABEL"
+      description="COM_REDJ_FIELD_PAGE404_LANGUAGE_DESC" required="true" />
+
+    <field name="page" type="textarea" class="inputbox"
+      rows="5" cols="40" filter="raw"
+      label="COM_REDJ_FIELD_PAGE404_PAGE_LABEL" description="COM_REDJ_FIELD_PAGE404_PAGE_DESC" />
+
+    <field name="hits" type="text" default="0"
+      class="inputbox validate-numeric" label="COM_REDJ_FIELD_PAGE404_HITS_LABEL"
+      description="COM_REDJ_FIELD_PAGE404_HITS_DESC" />
+
+    <field name="last_visit" type="calendar"
+      label="COM_REDJ_FIELD_PAGE404_LAST_VISIT_LABEL" description="COM_REDJ_FIELD_PAGE404_LAST_VISIT_DESC"
+      class="inputbox" format="%Y-%m-%d %H:%M:%S" size="22"
+      filter="user_utc" />
+
+  </fieldset>
+
+</form>

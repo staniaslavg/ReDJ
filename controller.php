@@ -4,10 +4,10 @@
  *
  * @author selfget.com (info@selfget.com)
  * @package ReDJ
- * @copyright Copyright 2009 - 2012
+ * @copyright Copyright 2009 - 2013
  * @license GNU Public License
  * @link http://www.selfget.com
- * @version 1.6.2
+ * @version 1.7.1
  */
 
 // no direct access
@@ -34,10 +34,9 @@ class ReDJController extends JControllerLegacy
    */
   public function display($cachable = false, $urlparams = false)
   {
-    $input =JFactory::getApplication()->input;
-    $view = $input->get('view', 'redirects');
-    $layout = $input->get('layout', 'default');
-    $id = $input->get('id');
+    $view = JRequest::getCmd('view', 'redirects');
+    $layout = JRequest::getCmd('layout', 'default');
+    $id = JRequest::getInt('id');
 
     // Set the submenu
     require_once JPATH_COMPONENT.'/helpers/redj.php';
@@ -62,7 +61,6 @@ class ReDJController extends JControllerLegacy
     }
 
     // Call parent behavior
-    //$res = new JControllerLegacy(array('name'=>'redirects'));
     parent::display();
 
     return $this;

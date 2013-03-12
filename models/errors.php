@@ -76,13 +76,13 @@ class ReDJModelErrors extends JModelList
     // Filter by search
     $search = $this->getState('filter.search');
     if (!empty($search)) {
-      $query->where('LOWER(e.visited_url) LIKE '.$db->Quote('%'.$db->getEscaped($search, true).'%').' OR LOWER(e.last_referer) LIKE '.$db->Quote('%'.$db->getEscaped($search, true).'%'));
+      $query->where('LOWER(e.visited_url) LIKE '.$db->Quote('%'.$db->escape($search, true).'%').' OR LOWER(e.last_referer) LIKE '.$db->Quote('%'.$db->escape($search, true).'%'));
     }
 
     // Add the list ordering clause
     $orderCol = $this->state->get('list.ordering', 'e.id');
     $orderDirn = $this->state->get('list.direction', 'asc');
-    $query->order($db->getEscaped($orderCol.' '.$orderDirn));
+    $query->order($db->escape($orderCol.' '.$orderDirn));
 
     return $query;
   }

@@ -40,6 +40,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 </script>
 
 <form action="<?php echo JRoute::_('index.php?option=com_redj&view=errors'); ?>" method="post" name="adminForm" id="adminForm">
+  <div style="display:none">
   <fieldset id="filter-bar">
     <div class="filter-search fltlft">
       <label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
@@ -57,6 +58,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
       ?>
     </div>
   </fieldset>
+  </div>
   <div class="clr"> </div>
 
 <div id="editcell" style="overflow-x:scroll">

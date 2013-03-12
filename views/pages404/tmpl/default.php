@@ -27,6 +27,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_redj&view=pages404'); ?>" method="post" name="adminForm" id="adminForm">
+<div style="display:none">
   <fieldset id="filter-bar">
     <div class="filter-search fltlft">
       <label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
@@ -35,6 +36,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
       <button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
     </div>
   </fieldset>
+</div>
   <div class="clr"> </div>
 
 <div id="editcell">

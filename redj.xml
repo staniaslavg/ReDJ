@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<extension version="1.6" type="component" method="upgrade">
+<extension version="1.7" type="component" method="upgrade">
     <name>com_redj</name>
     <author>selfget.com</author>
     <creationDate>May 2012</creationDate>
-    <copyright>Copyright (C) 2009 - 2012 selfget.com</copyright>
+    <copyright>Copyright (C) 2009 - 2013 selfget.com</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <authorEmail>info@selfget.com</authorEmail>
     <authorUrl>http://www.selfget.com</authorUrl>
-    <version>1.6.2</version>
+    <version>1.7.2</version>
     <description>COM_REDJ_DESCRIPTION</description>
 
     <!-- installation part -->

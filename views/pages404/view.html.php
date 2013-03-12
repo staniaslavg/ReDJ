@@ -37,6 +37,7 @@ class ReDJViewPages404 extends JViewLegacy
     $this->state = $this->get('State');
 
     // Check for errors
+
     if (count($errors = $this->get('Errors'))) {
       JError::raiseError(500, implode("\n", $errors));
       return false;
@@ -58,7 +59,7 @@ class ReDJViewPages404 extends JViewLegacy
     $canDo = ReDJHelper::getActions();
 
     if ($canDo->get('core.create')) {
-      JToolBarHelper::customX('pages404.copy', 'copy.png', 'copy_f2.png', JText::_('COM_REDJ_TOOLBAR_COPY'));
+      JToolBarHelper::custom('pages404.copy', 'copy.png', 'copy_f2.png', JText::_('COM_REDJ_TOOLBAR_COPY'));
       JToolBarHelper::addNew('page404.add');
     }
 

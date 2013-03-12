@@ -27,9 +27,10 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 $canOrder = $user->authorise('core.edit.state');
 $saveOrder = $listOrder=='a.ordering';
 ?>
-<div style="display:none">
+
 <form action="<?php echo JRoute::_('index.php?option=com_redj&view=redirects'); ?>" method="post" name="adminForm"
       id="adminForm" xmlns="http://www.w3.org/1999/html">
+<div style="display:none">
 <fieldset id="filter-bar">
     <div class="filter-search fltlft">
         <label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
@@ -43,7 +44,7 @@ $saveOrder = $listOrder=='a.ordering';
             <?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.state'), true);?>
         </select>
     </div>
-</fieldset> </div>
+</fieldset></div>
 <div class="clr"> </div>
 
 <div id="editcell" style="overflow-x:scroll">
@@ -81,12 +82,12 @@ $saveOrder = $listOrder=='a.ordering';
             <th width="7%">
                 <?php echo JHTML::_('grid.sort', 'COM_REDJ_HEADING_REDIRECTS_LAST_VISIT', 'a.last_visit', $listDirn, $listOrder); ?>
             </th>
-            <th width="19%" nowrap="nowrap">
+           <!-- <th width="19%" nowrap="nowrap">
                 <?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ORDERING', 'a.ordering', $listDirn, $listOrder); ?>
                 <?php if ($canOrder && $saveOrder): ?>
                 <?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'redirects.saveorder'); ?>
                 <?php endif;?>
-            </th>
+            </th>-->
             <th width="4%" nowrap="nowrap">
                 <?php echo JHTML::_('grid.sort', 'COM_REDJ_HEADING_REDIRECTS_PUBLISHED', 'a.published', $listDirn, $listOrder); ?>
             </th>
@@ -195,7 +196,8 @@ $saveOrder = $listOrder=='a.ordering';
                 <td>
                     <?php echo $item->last_visit; ?>
                 </td>
-                <td class="order">
+
+                <!--<td class="order">
                     <?php if ($canChange) : ?>
                     <?php if ($saveOrder) : ?>
                         <?php if ($listDirn == 'asc') : ?>
@@ -207,11 +209,11 @@ $saveOrder = $listOrder=='a.ordering';
                             <?php endif; ?>
                         <?php endif; ?>
                     <?php $disabled = $saveOrder ?  '' : 'disabled="disabled"'; ?>
-                    <input type="text" name="order[]" size="5" value="<?php echo $item->ordering;?>" <?php echo $disabled; ?> class="text-area-order" />
+                    <input type="text" name="order[]" size="5" value="<?php echo $item->ordering;?>" <?php echo $disabled; ?> class="text-area-order input-mini" />
                     <?php else : ?>
                     <?php echo $item->ordering; ?>
                     <?php endif; ?>
-                </td>
+                </td>-->
                 <td class="center">
                     <?php echo JHtml::_('jgrid.published', $item->published, $i, 'redirects.', $canChange); ?>
                 </td>

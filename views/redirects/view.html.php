@@ -4,10 +4,10 @@
  *
  * @author selfget.com (info@selfget.com)
  * @package ReDJ
- * @copyright Copyright 2009 - 2012
+ * @copyright Copyright 2009 - 2013
  * @license GNU Public License
  * @link http://www.selfget.com
- * @version 1.6.2
+ * @version 1.7.1
  */
 
 // no direct access
@@ -32,22 +32,19 @@ class ReDJViewRedirects extends JViewLegacy
 
   public function display($tpl = null)
   {
-
     // Initialise variables
     $this->enabled = ReDJHelper::isEnabled();
     $this->items = $this->get('Items');
     $this->pagination = $this->get('Pagination');
     $this->state = $this->get('State');
 
-
     // Check for errors
-    /*if (count($errors = $this->get('Errors'))) {
+    if (count($errors = $this->get('Errors'))) {
       JError::raiseError(500, implode("\n", $errors));
       return false;
-    }*/
+    }
 
     $this->addToolbar();
-
     parent::display($tpl);
   }
 
@@ -58,13 +55,12 @@ class ReDJViewRedirects extends JViewLegacy
    */
   protected function addToolbar()
   {
-    $state = $this->get('state');
     JToolBarHelper::title(JText::_('COM_REDJ_MANAGER'), 'redj.png');
 
     $canDo = ReDJHelper::getActions();
 
     if ($canDo->get('core.create')) {
-      //JToolBarHelper::customX('redirects.copy', 'copy.png', 'copy_f2.png', JText::_('COM_REDJ_TOOLBAR_COPY'));
+      JToolBarHelper::custom('redirects.copy', 'copy.png', 'copy_f2.png', JText::_('COM_REDJ_TOOLBAR_COPY'));
       JToolBarHelper::addNew('redirect.add');
     }
 
@@ -75,18 +71,18 @@ class ReDJViewRedirects extends JViewLegacy
     JToolBarHelper::divider();
 
     if ($canDo->get('core.edit.state')) {
-      if ($state->get('filter.state') != 2){
+      if ($this->state->get('filter.state') != 2){
         JToolBarHelper::publish('redirects.publish', 'JTOOLBAR_PUBLISH', true);
         JToolBarHelper::unpublish('redirects.unpublish', 'JTOOLBAR_UNPUBLISH', true);
       }
 
       JToolBarHelper::divider();
 
-      if ($state->get('filter.state') != -1 ) {
-        if ($state->get('filter.state') != 2) {
+      if ($this->state->get('filter.state') != -1 ) {
+        if ($this->state->get('filter.state') != 2) {
           JToolBarHelper::archiveList('redirects.archive');
         }
-        else if ($state->get('filter.state') == 2) {
+        else if ($this->state->get('filter.state') == 2) {
           JToolBarHelper::unarchiveList('redirects.publish');
         }
       }

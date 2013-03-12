@@ -4,10 +4,10 @@
  *
  * @author selfget.com (info@selfget.com)
  * @package ReDJ
- * @copyright Copyright 2009 - 2012
+ * @copyright Copyright 2009 - 2013
  * @license GNU Public License
  * @link http://www.selfget.com
- * @version 1.6.2
+ * @version 1.7.1
  */
 
 // no direct access
@@ -29,6 +29,8 @@ class ReDJModelRedirects extends JModelList
         'case_sensitive', 'a.case_sensitive',
         'request_only', 'a.request_only',
         'decode_url', 'a.decode_url',
+        'placeholders', 'a.placeholders',
+        'comment', 'a.comment',
         'hits', 'a.hits',
         'last_visit', 'a.last_visit',
         'ordering', 'a.ordering',
@@ -74,7 +76,7 @@ class ReDJModelRedirects extends JModelList
     $db = $this->getDbo();
     $query = $db->getQuery(true);
     // Select required fields
-    $query->select('a.id, a.fromurl, a.tourl, a.redirect, a.case_sensitive, a.request_only, a.decode_url, a.hits, a.last_visit, a.ordering, a.published, a.checked_out');
+    $query->select('a.id, a.fromurl, a.tourl, a.redirect, a.case_sensitive, a.request_only, a.decode_url, a.placeholders, a.comment, a.hits, a.last_visit, a.ordering, a.published, a.checked_out');
 
     // From the table
     $query->from('#__redj_redirects AS a');
@@ -90,13 +92,13 @@ class ReDJModelRedirects extends JModelList
     // Filter by search
     $search = $this->getState('filter.search');
     if (!empty($search)) {
-      $query->where('LOWER(a.fromurl) LIKE '.$db->Quote('%'.$db->getEscaped($search, true).'%').'OR LOWER(a.tourl) LIKE '.$db->Quote('%'.$db->getEscaped($search, true).'%'));
+      $query->where('LOWER(a.fromurl) LIKE '.$db->Quote('%'.$db->escape($search, true).'%').'OR LOWER(a.tourl) LIKE '.$db->Quote('%'.$db->escape($search, true).'%'));
     }
 
     // Add the list ordering clause
     $orderCol = $this->state->get('list.ordering', 'a.ordering');
     $orderDirn = $this->state->get('list.direction', 'asc');
-    $query->order($db->getEscaped($orderCol.' '.$orderDirn));
+    $query->order($db->escape($orderCol.' '.$orderDirn));
 
     return $query;
   }

@@ -4,10 +4,10 @@
  *
  * @author selfget.com (info@selfget.com)
  * @package ReDJ
- * @copyright Copyright 2009 - 2012
+ * @copyright Copyright 2009 - 2013
  * @license GNU Public License
  * @link http://www.selfget.com
- * @version 1.6.2
+ * @version 1.7.1
  */
 
 // no direct access
@@ -25,8 +25,7 @@ jimport('joomla.application.component.controller');
 $controller = JControllerLegacy::getInstance('ReDJ');
 
 // Perform the Request task
-$input =JFactory::getApplication()->input;
-$controller->execute($input->get('task'));
+$controller->execute(JFactory::getApplication()->input->get('task'));
 
 // Redirect if set by the controller
 $controller->redirect();
